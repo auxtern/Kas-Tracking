@@ -1,6 +1,6 @@
 # Kas-Tracking
 
-![kas-tracking](asset\img\kas-tracking.png){:height="36px" width="36px"}
+![kas-tracking](/asset/img/kas-tracking.png)
 
 Aplikasi Kas Tracking ini dirancang sebagai sebuah aplikasi yang dapat menjadi tempat penyimpanan data-data yang penting tentang keuangan, yang bisa membantu tugas dari bendahara pada umumnya. Pada aplikasi ini, akan mempermudah tugas dari seorang bendahara dalam mengolah data-data keuangan yang mudah dikelola dan sistematis. 
 
