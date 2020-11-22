@@ -1,5 +1,7 @@
 # Kas-Tracking
 
+[![codecov](https://codecov.io/gh/auXtern/Kas-Tracking/branch/main/graph/badge.svg?token=N7ORITW6A2)](https://codecov.io/gh/auXtern/Kas-Tracking)
+
 ![kas-tracking](/asset/img/kas-tracking.png)
 
 Aplikasi Kas Tracking ini dirancang sebagai sebuah aplikasi yang dapat menjadi tempat penyimpanan data-data yang penting tentang keuangan, yang bisa membantu tugas dari bendahara pada umumnya. Pada aplikasi ini, akan mempermudah tugas dari seorang bendahara dalam mengolah data-data keuangan yang mudah dikelola dan sistematis. 
