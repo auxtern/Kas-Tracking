@@ -1,5 +1,7 @@
 # Kas-Tracking
 
+[![](https://img.shields.io/badge/Laravel-8.0-success)](https://laravel.com/docs/8.x)
+
 ![kas-tracking](/asset/img/kas-tracking.png)
 
 Aplikasi Kas Tracking ini dirancang sebagai sebuah aplikasi yang dapat menjadi tempat penyimpanan data-data yang penting tentang keuangan, yang bisa membantu tugas dari bendahara pada umumnya. Pada aplikasi ini, akan mempermudah tugas dari seorang bendahara dalam mengolah data-data keuangan yang mudah dikelola dan sistematis. 
