@@ -9,6 +9,10 @@ Aplikasi ini akan menampilkan data-data keuangan dalam format yang lebih rapi da
 Kemudian, BPH selaku admin memiliki akses yang berbeda dengan anggota, karena apabila anggota melakukan pembayaran atau transaksi maka BPH atau admin bisa menginput datanya pada aplikasi. Selain melakukan input data pembayaran, bendahara bisa langsung membuat laporan pemasukan dan pengeluaran data-data keuangan dalam jangka waktu tertentu dan bisa juga melakukan pencetakan sehingga lebih efisien, data-data juga lebih akurat. Sistemnya bisa offline dan saat terhubung dengan internet otomatis akan memperbaharui data untuk aplikasi android (Khusus Mobile). 
 
 
+# Proses Pengerjaan
+
+[Trello - Kas Tracking]: https://trello.com/b/muLM912N/kas-tracking
+
 
 # Tim Kami
 
@@ -18,7 +22,5 @@ Kemudian, BPH selaku admin memiliki akses yang berbeda dengan anggota, karena ap
 
 
 
-# Change Log
 
-- (22/11/2020) Desain Logo Kas Tracking
 
