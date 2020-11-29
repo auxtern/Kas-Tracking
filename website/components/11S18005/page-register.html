@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/login/login.css">
+    <link rel="stylesheet" type="text/css" href="vendor/login/login-theme.css">
+</head>
+<body>
+<div class="form-body">
+    <div class="row">
+        <div class="img-holder">
+            <div class="bg"></div>
+            <div class="info-holder">
+                <img src="img/login/login-graphic.svg" alt="">
+                <h3 class="text-justify font-weight-light">Jadilah bendahara yang jujur, dengan menerapkan transparansi data informasi terkait pemasukan dan pengeluaran dana di lingkungan organisasi kamu!</h3>
+            </div>
+        </div>
+        <div class="form-holder">
+            <div class="form-content">
+                <div class="form-items">
+                    <a href="page-login.html" class="d-flex align-items-center text-decoration-none">
+                        <img  class="mr-3" src="img/kas-tracking.png" style="width: 76px;" alt="">
+                        <h2 class="text-white">Kas Tracking</h2>
+                    </a>
+                    <div class="page-links">
+                        <a href="page-login.html">Masuk</a>
+                        <a href="page-register.html" class="active">Daftar</a>
+                    </div>
+                    <form>
+                        <input class="form-control" type="text" name="name" placeholder="Nama Lengkap" required>
+                        <input class="form-control" type="email" name="email" placeholder="Alamat E-mail" required>
+                        <input class="form-control" type="password" name="password" placeholder="Kata Sandi" required>
+                        <div class="form-button">
+                            <button id="submit" type="submit" class="ibtn">Daftar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.4/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="vendor/login/login.js"></script>
+</body>
+</html>
