@@ -1,0 +1,206 @@
+[
+    {
+      "nama": "Aceh",
+      "ibukota": "Banda Aceh",
+      "tahun_peresmian": "1959",
+      "luas": "57365"
+    },
+    {
+      "nama": "Bali",
+      "ibukota": "Denpasar",
+      "tahun_peresmian": "1958",
+      "luas": "5561"
+    },
+    {
+      "nama": "Banten",
+      "ibukota": "Serang",
+      "tahun_peresmian": "2000",
+      "luas": "9019"
+    },
+    {
+      "nama": "Bengkulu",
+      "ibukota": "Bengkulu",
+      "tahun_peresmian": "1968",
+      "luas": "19789"
+    },
+    {
+      "nama": "DI Yogyakarta",
+      "ibukota": "Yogyakarta",
+      "tahun_peresmian": "1950",
+      "luas": "3133"
+    },
+    {
+      "nama": "DKI Jakarta",
+      "ibukota": "DKI Jakarta",
+      "tahun_peresmian": "1961",
+      "luas": "740"
+    },
+    {
+      "nama": "Gorontalo",
+      "ibukota": "Gorontalo",
+      "tahun_peresmian": "2000",
+      "luas": "11968"
+    },
+    {
+      "nama": "Jambi",
+      "ibukota": "Jambi",
+      "tahun_peresmian": "1957",
+      "luas": "53509"
+    },
+    {
+      "nama": "Jawa Barat",
+      "ibukota": "Bandung",
+      "tahun_peresmian": "1950",
+      "luas": "35245"
+    },
+    {
+      "nama": "Jawa Tengah",
+      "ibukota": "Semarang\t",
+      "tahun_peresmian": "1950",
+      "luas": "33987"
+    },
+    {
+      "nama": "Jawa Timur",
+      "ibukota": "Surabaya",
+      "tahun_peresmian": "1950",
+      "luas": "47921"
+    },
+    {
+      "nama": "Kalimantan Barat",
+      "ibukota": "Pontianak",
+      "tahun_peresmian": "1956",
+      "luas": "115114"
+    },
+    {
+      "nama": "Kalimantan Selatan",
+      "ibukota": "Banjarmasin",
+      "tahun_peresmian": "1956",
+      "luas": "36805"
+    },
+    {
+      "nama": "Kalimantan Tengah",
+      "ibukota": "Palangkaraya",
+      "tahun_peresmian": "1958",
+      "luas": "153564"
+    },
+    {
+      "nama": "Kalimantan Timur",
+      "ibukota": "Samarinda",
+      "tahun_peresmian": "1958",
+      "luas": "194849"
+    },
+    {
+      "nama": "Kalimantan Utara",
+      "ibukota": "Tanjungselor",
+      "tahun_peresmian": "2012",
+      "luas": "71177"
+    },
+    {
+      "nama": "Kepulauan Bangka Belitung",
+      "ibukota": "Pangkalpinang",
+      "tahun_peresmian": "2000",
+      "luas": "16424"
+    },
+    {
+      "nama": "Kepulauan Riau",
+      "ibukota": "Tanjung Pinang",
+      "tahun_peresmian": "2002",
+      "luas": "8084"
+    },
+    {
+      "nama": "Lampung",
+      "ibukota": "Banda Lampung",
+      "tahun_peresmian": "1964",
+      "luas": "35376"
+    },
+    {
+      "nama": "Maluku",
+      "ibukota": "Ambon",
+      "tahun_peresmian": "1958",
+      "luas": "49350"
+    },
+    {
+      "nama": "Maluku Utara",
+      "ibukota": "Sofifi",
+      "tahun_peresmian": "1999",
+      "luas": "42960"
+    },
+    {
+      "nama": "Nusa Tenggara Barat",
+      "ibukota": "Mataram",
+      "tahun_peresmian": "1958",
+      "luas": "19950"
+    },
+    {
+      "nama": "Nusa Tenggara Timur",
+      "ibukota": "Kupang",
+      "tahun_peresmian": "1958",
+      "luas": "47676"
+    },
+    {
+      "nama": "Papua",
+      "ibukota": "Jayapura",
+      "tahun_peresmian": "1969",
+      "luas": "309934"
+    },
+    {
+      "nama": "Papua Barat",
+      "ibukota": "Manokwari",
+      "tahun_peresmian": "1999",
+      "luas": "114566"
+    },
+    {
+      "nama": "Riau",
+      "ibukota": "Pekanbaru",
+      "tahun_peresmian": "1957",
+      "luas": "94560"
+    },
+    {
+      "nama": "Sulawesi Barat",
+      "ibukota": "Mamuju",
+      "tahun_peresmian": "2004",
+      "luas": "16787"
+    },
+    {
+      "nama": "Sulawesi Selatan",
+      "ibukota": "Makassar",
+      "tahun_peresmian": "1960",
+      "luas": "46116"
+    },
+    {
+      "nama": "Sulawesi Tengah",
+      "ibukota": "Palu",
+      "tahun_peresmian": "1964",
+      "luas": "68090"
+    },
+    {
+      "nama": "Sulawesi Tenggara",
+      "ibukota": "Kendari",
+      "tahun_peresmian": "1964",
+      "luas": "36757"
+    },
+    {
+      "nama": "Sulawesi Utara",
+      "ibukota": "Manado",
+      "tahun_peresmian": "1960",
+      "luas": "13931"
+    },
+    {
+      "nama": "Sumatera Barat",
+      "ibukota": "Padang",
+      "tahun_peresmian": "1957",
+      "luas": "42297"
+    },
+    {
+      "nama": "Sumatera Selatan",
+      "ibukota": "Palembang",
+      "tahun_peresmian": "1950",
+      "luas": "85679"
+    },
+    {
+      "nama": "Sumatera Utara",
+      "ibukota": "Medan",
+      "tahun_peresmian": "1956",
+      "luas": "72981"
+    }
+  ]
