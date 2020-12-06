@@ -1,5 +1,9 @@
 @extends('layouts.app-login')
 
+@section('title')
+{{ config('app.name', 'Kas Tracking') }} - Lupa Kata Sandi
+@endsection
+
 @section('content')
 <div class="form-content">
 @if (session('status'))

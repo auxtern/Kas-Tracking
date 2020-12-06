@@ -20,7 +20,7 @@
 
             <div class="form-group">
                 <span>Email</span><br>
-                <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} mb-0" type="text" name="email" placeholder="" required>
+                <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} mb-0" type="text" name="email" placeholder="" value="{{ old('email') }}" required>
                 @if ($errors->has('email'))
                     <span class="text-danger" role="alert">
                         <strong>{{ $errors->first('email') }}</strong>
@@ -30,7 +30,7 @@
             
             <div class="form-group">
                 <span>Kata Sandi</span><br>
-                <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }} mb-0" type="password" name="password" placeholder="" required>
+                <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }} mb-0" type="password" name="password" placeholder="" value="{{ old('password') }}" required>
                 @if ($errors->has('password'))
                     <span class="text-danger" role="alert">
                         <strong>{{ $errors->first('password') }}</strong>

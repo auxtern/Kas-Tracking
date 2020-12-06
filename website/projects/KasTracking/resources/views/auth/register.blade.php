@@ -20,7 +20,7 @@
             
             <div class="form-group">
                 <span>Nama Lengkap</span><br>
-                <input class="form-control{{ $errors->has('nama') ? ' is-invalid' : '' }} mb-0" type="text" name="nama" placeholder="" required>
+                <input class="form-control{{ $errors->has('nama') ? ' is-invalid' : '' }} mb-0" type="text" name="nama" placeholder="" value="{{ old('nama') }}" required>
                 @if ($errors->has('nama'))
                     <span class="text-danger" role="alert">
                         <strong>{{ $errors->first('nama') }}</strong>
@@ -30,7 +30,7 @@
 
             <div class="form-group">
                 <span>Tanggal Lahir</span><br>
-                <input class="form-control{{ $errors->has('tanggal_lahir') ? ' is-invalid' : '' }} mb-0" type="date" name="tanggal_lahir" placeholder="Tanggal Lahir" required>
+                <input class="form-control{{ $errors->has('tanggal_lahir') ? ' is-invalid' : '' }} mb-0" type="date" name="tanggal_lahir" placeholder="" value="{{ old('tanggal_lahir') }}"  required>
                 @if ($errors->has('tanggal_lahir'))
                     <span class="text-danger" role="alert">
                         <strong>{{ $errors->first('tanggal_lahir') }}</strong>
@@ -71,18 +71,8 @@
             </div>
 
             <div class="form-group">
-                <span>Nama Organisasi</span><br>
-                <input class="form-control{{ $errors->has('organisasi') ? ' is-invalid' : '' }} mb-0" type="text" name="organisasi" placeholder="" required>
-                @if ($errors->has('organisasi'))
-                    <span class="text-danger" role="alert">
-                        <strong>{{ $errors->first('organisasi') }}</strong>
-                    </span>
-                @endif
-            </div>
-
-            <div class="form-group">
                 <span>Nomor Whatsapp</span><br>
-                <input class="form-control{{ $errors->has('whatsapp') ? ' is-invalid' : '' }} mb-0" type="number" name="whatsapp" placeholder="" required>
+                <input class="form-control{{ $errors->has('whatsapp') ? ' is-invalid' : '' }} mb-0" type="number" name="whatsapp" placeholder="" value="{{ old('whatsapp') }}" required>
                 @if ($errors->has('whatsapp'))
                     <span class="text-danger" role="alert">
                         <strong>{{ $errors->first('whatsapp') }}</strong>
@@ -92,7 +82,7 @@
 
             <div class="form-group">
                 <span>Alamat Email</span><br>
-                <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} mb-0" type="email" name="email" placeholder="email" required>
+                <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} mb-0" type="email" name="email" placeholder="email" value="{{ old('email') }}" required>
                 @if ($errors->has('email'))
                     <span class="text-danger" role="alert">
                         <strong>{{ $errors->first('email') }}</strong>
@@ -102,7 +92,7 @@
 
             <div class="form-group">
                 <span>Kata Sandi</span><br>
-                <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }} mb-0" type="password" name="password" placeholder="" required>
+                <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }} mb-0" type="password" name="password" placeholder="" value="{{ old('password') }}" required>
                 @if ($errors->has('password'))
                     <span class="text-danger" role="alert">
                         <strong>{{ $errors->first('password') }}</strong>
@@ -115,7 +105,8 @@
                 <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }} mb-0" type="password" name="password_confirmation" placeholder="" required>
             </div>
 
-            
+            <span class="text-white"> <i class="fa fa-check mr-3"></i>Dengan mendaftar kamu setuju dengan Ketentuan dan Kebijakan Privasi, Kas Tracking.</span><br>
+           
             <div class="form-button">
                 <button id="submit" type="submit" class="ibtn">{{ __('Daftar') }}</button>
             </div>

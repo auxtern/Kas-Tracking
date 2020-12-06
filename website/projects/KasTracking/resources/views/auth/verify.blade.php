@@ -1,24 +1,19 @@
-@extends('layouts.app')
+@extends('layouts.app-login')
+
+@section('title')
+{{ config('app.name', 'Kas Tracking') }} - Verifikasi Email
+@endsection
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
-
-                <div class="card-body">
-                    @if (session('resent'))
-                        <div class="alert alert-success" role="alert">
-                            {{ __('A fresh verification link has been sent to your email address.') }}
-                        </div>
-                    @endif
-
-                    {{ __('Before proceeding, please check your email for a verification link.') }}
-                    {{ __('If you did not receive the email') }}, <a href="{{ route('verification.resend') }}">{{ __('click here to request another') }}</a>.
-                </div>
-            </div>
+<div class="form-content">
+    <div class="form-sent show-it">
+        <div class="tick-holder">
+            <div class="tick-icon"></div>
         </div>
+        <h3>Silahkan melakukan verifikasi alamat email!</h3>
+        <p>Sebelum melanjutkan, periksa email Anda untuk menerima tautan verifikasi. Jika Anda tidak menerima email!</p>
+
+        <a class="bg-white p-2 rounded shadow" href="{{ route('verification.resend') }}">Klik di sini untuk meminta yang lain.</a>
     </div>
 </div>
 @endsection

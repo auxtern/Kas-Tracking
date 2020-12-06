@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="196.255" height="196.424" viewBox="0 0 196.255 196.424">
+  <g id="Group_2" data-name="Group 2" transform="translate(-64.373 -42)">
+    <rect id="Rectangle_3" data-name="Rectangle 3" width="49.218" height="44.263" transform="translate(115.139 151.977) rotate(43)" fill="#ffd9b3"/>
+    <rect id="Rectangle_4" data-name="Rectangle 4" width="91.83" height="18.111" transform="translate(126.323 170.826)" fill="#ffd9b3"/>
+    <rect id="Rectangle_6" data-name="Rectangle 6" width="65.074" height="21.801" rx="10.901" transform="translate(144.491 141.097)" fill="#ffd9b3"/>
+    <rect id="Rectangle_10" data-name="Rectangle 10" width="65.074" height="16.408" rx="8.204" transform="translate(206.231 181.791) rotate(-50)" fill="#ffd9b3"/>
+    <path id="Subtraction_2" data-name="Subtraction 2" d="M32.207,51.53A39.025,39.025,0,0,1,19.67,49.506,33.479,33.479,0,0,1,9.433,43.984a26.211,26.211,0,0,1-6.9-8.19,21.135,21.135,0,0,1,0-20.058,26.211,26.211,0,0,1,6.9-8.19A33.479,33.479,0,0,1,19.67,2.025,39.025,39.025,0,0,1,32.207,0a36.851,36.851,0,0,1,21.94,6.9c5.946,4.428,9.559,10.423,10.173,16.881H50.045a4.79,4.79,0,0,0,0,9.58H62.99a24.011,24.011,0,0,1-4.483,7.277,29.726,29.726,0,0,1-7,5.752A37.468,37.468,0,0,1,32.207,51.53Z" transform="translate(112.45 137.464)" fill="#ffd9b3"/>
+    <path id="Subtraction_1" data-name="Subtraction 1" d="M63.066,26.426H1.347A19.329,19.329,0,0,1,19.324,0H45.089A19.336,19.336,0,0,1,63.066,26.425Z" transform="translate(82.395 175.168) rotate(43)" fill="#009fff"/>
+    <g id="Group_1" data-name="Group 1" transform="translate(114.756 42)">
+      <rect id="Rectangle_14" data-name="Rectangle 14" width="62" height="82" transform="translate(0.244 4)" fill="#ecf2ff"/>
+      <rect id="Rectangle_15" data-name="Rectangle 15" width="62" height="82" transform="translate(76.244 4)" fill="#ecf2ff"/>
+      <rect id="Rectangle_16" data-name="Rectangle 16" width="14" height="90" rx="7" transform="translate(62.244)" fill="#d9e5ff"/>
+      <rect id="Rectangle_11" data-name="Rectangle 11" width="3.848" height="25.861" transform="translate(22.242 34.762) rotate(43)" fill="#009fff"/>
+      <path id="Icon_metro-money" data-name="Icon metro-money" d="M27.13,30.108c-6.8-1.769-8.993-3.582-8.993-6.43,0-3.267,3.013-5.561,8.094-5.561,5.336,0,7.314,2.548,7.494,6.3h6.625c-.195-5.171-3.357-9.877-9.622-11.421V6.427H21.734V12.9c-5.815,1.274-10.492,5.021-10.492,10.821,0,6.925,5.74,10.372,14.089,12.38,7.509,1.8,8.993,4.421,8.993,7.239,0,2.053-1.454,5.351-8.094,5.351-6.175,0-8.618-2.773-8.933-6.3h-6.61c.375,6.565,5.276,10.237,11.046,11.481v6.5h8.993V53.939c5.83-1.124,10.492-4.5,10.492-10.657C41.219,34.8,33.934,31.892,27.13,30.108Z" transform="translate(80.157 12.071)" fill="#fb3"/>
+      <rect id="Rectangle_12" data-name="Rectangle 12" width="3.848" height="25.861" transform="translate(41.861 51.946) rotate(131)" fill="#009fff"/>
+      <rect id="Rectangle_13" data-name="Rectangle 13" width="3.848" height="25.861" transform="translate(54.415 33.376) rotate(43)" fill="#009fff"/>
+      <circle id="Ellipse_2" data-name="Ellipse 2" cx="4" cy="4" r="4" transform="translate(19.244 35)" fill="#009fff"/>
+      <circle id="Ellipse_3" data-name="Ellipse 3" cx="4" cy="4" r="4" transform="translate(36.244 48)" fill="#009fff"/>
+      <text id="v" transform="translate(20.244 43)" fill="#707070" font-size="3" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">v</tspan></text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,14 @@
+@import url("animated.css");
+@import url("darak.css");
+@import url("sidemenu.css");
+@import url("skin-mode.css");
+@import url("style.css");
+
+img.img-profile{
+    width: 120px!important;
+    height: 120px!important;
+}
+
+.text-icon{
+    color: #5C678F;
+}
