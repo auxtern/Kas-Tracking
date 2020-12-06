@@ -1,6 +1,6 @@
 # Kas-Tracking
 
-[![](https://img.shields.io/badge/Laravel-8.0-success)](https://laravel.com/docs/8.x)
+[![](https://img.shields.io/badge/Laravel-5.7-success)](https://laravel.com/docs/8.x)
 
 ![kas-tracking](/asset/img/kas-tracking.png)
 
