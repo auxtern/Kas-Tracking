@@ -113,7 +113,9 @@
             <h3 class="card-title">Total Anggota</h3>
           </div>
           <div class="card-body">
-            <h4 class="mb-1 number-font text-info">0</h4>
+            <h4 class="mb-1 number-font text-info">
+              {{ App\OrganisasiMembers::where('organisasi_id', $organisasi['organisasi_id'])->get()->count() }}
+            </h4>
           </div>
         </div>
       </div>
@@ -164,142 +166,23 @@
           <div class="card-body">
             <div class="latest-timeline scrollbar3" id="scrollbar3">
               <ul class="timeline mb-0">
-                <li class="mt-0">
-                  <div class="d-flex">
-                    <span class="time-data">Task Finished</span
-                    ><span class="ml-auto text-muted fs-11"
-                      >09 June 2020</span
-                    >
-                  </div>
-                  <p class="text-muted fs-12">
-                    <span class="text-info">Joseph Ellison</span>
-                    finished task on<a
-                      href="#"
-                      class="font-weight-semibold"
-                    >
-                      Project Management</a
-                    >
-                  </p>
-                </li>
-                <li>
-                  <div class="d-flex">
-                    <span class="time-data">New Comment</span
-                    ><span class="ml-auto text-muted fs-11"
-                      >05 June 2020</span
-                    >
-                  </div>
-                  <p class="text-muted fs-12">
-                    <span class="text-info">Elizabeth Scott</span>
-                    Product delivered<a
-                      href="#"
-                      class="font-weight-semibold"
-                    >
-                      Service Management</a
-                    >
-                  </p>
-                </li>
-                <li>
-                  <div class="d-flex">
-                    <span class="time-data">Target Completed</span
-                    ><span class="ml-auto text-muted fs-11"
-                      >01 June 2020</span
-                    >
-                  </div>
-                  <p class="text-muted fs-12">
-                    <span class="text-info">Sonia Peters</span> finished
-                    target on<a
-                      href="#"
-                      class="font-weight-semibold"
-                    >
-                      this month Sales</a
-                    >
-                  </p>
-                </li>
-                <li>
-                  <div class="d-flex">
-                    <span class="time-data">Revenue Sources</span
-                    ><span class="ml-auto text-muted fs-11"
-                      >26 May 2020</span
-                    >
-                  </div>
-                  <p class="text-muted fs-12">
-                    <span class="text-info">Justin Nash</span> source
-                    report on<a
-                      href="#"
-                      class="font-weight-semibold"
-                    >
-                      Generated</a
-                    >
-                  </p>
-                </li>
-                <li>
-                  <div class="d-flex">
-                    <span class="time-data">Dispatched Order</span
-                    ><span class="ml-auto text-muted fs-11"
-                      >22 May 2020</span
-                    >
-                  </div>
-                  <p class="text-muted fs-12">
-                    <span class="text-info">Ella Lambert</span> ontime
-                    order delivery
-                    <a
-                      href="#"
-                      class="font-weight-semibold"
-                      >Service Management</a
-                    >
-                  </p>
-                </li>
-                <li>
-                  <div class="d-flex">
-                    <span class="time-data">New User Added</span
-                    ><span class="ml-auto text-muted fs-11"
-                      >19 May 2020</span
-                    >
-                  </div>
-                  <p class="text-muted fs-12">
-                    <span class="text-info">Nicola Blake</span> visit
-                    the site<a
-                      href="#"
-                      class="font-weight-semibold"
-                    >
-                      Membership allocated</a
-                    >
-                  </p>
-                </li>
-                <li>
-                  <div class="d-flex">
-                    <span class="time-data">Revenue Sources</span
-                    ><span class="ml-auto text-muted fs-11"
-                      >15 May 2020</span
-                    >
-                  </div>
-                  <p class="text-muted fs-12">
-                    <span class="text-info">Richard Mills</span> source
-                    report on<a
-                      href="#"
-                      class="font-weight-semibold"
-                    >
-                      Generated</a
-                    >
-                  </p>
-                </li>
-                <li class="mb-0">
-                  <div class="d-flex">
-                    <span class="time-data">New Order Placed</span
-                    ><span class="ml-auto text-muted fs-11"
-                      >11 May 2020</span
-                    >
-                  </div>
-                  <p class="text-muted fs-12">
-                    <span class="text-info">Steven Hart</span> is proces
-                    the order<a
-                      href="#"
-                      class="font-weight-semibold"
-                    >
-                      #987</a
-                    >
-                  </p>
-                </li>
+                @php
+                    $dataLogs = App\OrganisasiLogs::where('organisasi_id', $organisasi['organisasi_id'])->orderBy('log_id', 'desc')->take(100)->get(); 
+                @endphp
+                @foreach ($dataLogs as $log)
+                  <li class="mt-0">
+                    <div class="d-flex">
+                      <span class="time-data">{{ App\Helpers\Tools::tanggalHariIndonesia($log->created_at) }}</span>
+                      </span>
+                    </div>
+                    <p class="text-muted fs-12">
+                        <span class="text-success">
+                          ({{ App\User::select('nama')->where('id', $log->user_id)->get()->first()->nama }})
+                        </span>
+                        {{ $log->pesan }}
+                    </p>
+                  </li>
+                @endforeach
               </ul>
             </div>
           </div>

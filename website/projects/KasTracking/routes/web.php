@@ -23,8 +23,11 @@ ORGANISASI
 ==============================================================
 */
 
-// DASBOR ORGANISASI
+// Daftar ORGANISASI yagn diikuti
 Route::get('organisasi', 'OrganisasiController@index')->name('organisasi');
+
+// Dasbor Organisasi
+Route::get('organisasi/manage/{organisasi_id}', 'OrganisasiController@manage')->name('organisasi/manage');
 
 // HALAMAN BUAT ORGANISASI
 Route::get('organisasi/create', 'OrganisasiController@createView')->name('organisasi/create');
@@ -41,10 +44,16 @@ Route::post('organisasi/manage/users/{organisasi_id}', 'OrganisasiController@use
 // HAPUS BENDAHARA
 Route::post('organisasi/manage/users/delete/{organisasi_id}', 'OrganisasiController@usersDelete')->name('organisasi/manage/users/delete');
 
-Route::get('organisasi/manage/{organisasi_id}', 'OrganisasiController@manage')->name('organisasi/manage');
-
-
+// Halaman Anggota
 Route::get('organisasi/manage/members/{organisasi_id}', 'OrganisasiController@manageMembers')->name('organisasi/manage/members');
+
+// TAMBAH Anggota
+Route::post('organisasi/manage/members/{organisasi_id}', 'OrganisasiController@members')->name('organisasi/manage/members');
+
+// Ubah Anggota
+Route::post('organisasi/manage/members/update/{organisasi_id}', 'OrganisasiController@membersUpdate')->name('organisasi/manage/members/update');
+
+
 Route::get('organisasi/manage/money/{organisasi_id}', 'OrganisasiController@manageMoney')->name('organisasi/manage/money');
 Route::get('organisasi/manage/settings/{organisasi_id}', 'OrganisasiController@manageSettings')->name('organisasi/manage/settings');
 

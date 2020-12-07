@@ -16,9 +16,11 @@ class CreateOrganisasiTable extends Migration
         Schema::create('organisasi', function (Blueprint $table) {
             $table->integer('user_id')->unsigned()->index('user_id')->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->increments('organisasi_id');
-            $table->string('nama', 200);
+            $table->string('nama', 150);
             $table->string('lokasi', 200);
-            $table->string('token');
+            $table->string('jenis_iuran', 50);
+            $table->string('status_iuran',50);
+            $table->integer('jumlah_iuran');
             $table->timestamps();
         });
     }

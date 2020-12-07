@@ -74,7 +74,37 @@
 @endsection
 
 @section('content')
-Halaman Keuangan
+
+    <div class="panel panel-primary">
+      <div class="tab-menu-heading bg-white shadow">
+        <div class="tabs-menu ">
+          <!-- Tabs -->
+          <ul class="nav panel-tabs">
+            <li class=""><a href="#tab1" class="active" data-toggle="tab">Pemasukan</a></li>
+            <li><a href="#tab2" data-toggle="tab">Pengeluaran</a></li>
+            <li><a href="#tab3" data-toggle="tab">Belum Membayar Iuran</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="panel-body tabs-menu-body bg-white shadow mt-3 card card-header">
+        <div class="tab-content">
+          <div class="tab-pane active " id="tab1">
+            <p>page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like</p>
+            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et</p>
+          </div>
+          <div class="tab-pane  " id="tab2">
+            <p> default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like</p>
+            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et</p>
+          </div>
+          <div class="tab-pane " id="tab3">
+            <p>over the years, sometimes by accident, sometimes on purpose (injected humour and the like</p>
+            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
 @endsection
 
 

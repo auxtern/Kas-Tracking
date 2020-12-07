@@ -14,7 +14,7 @@ class OrganisasiLogs extends Migration
     public function up()
     {
         Schema::create('organisasi_logs', function (Blueprint $table) {
-            $table->increments('logs_id');
+            $table->increments('log_id');
             $table->integer('user_id')->unsigned()->index('user_id')->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('organisasi_id')->unsigned()->index('organisasi_id')->foreign('organisasi_id')->references('organisasi_id')->on('organisasi')->onDelete('cascade')->onUpdate('cascade');
             $table->string('pesan');

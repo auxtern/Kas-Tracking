@@ -5,3 +5,12 @@ $('#data-bendahara').DataTable({
       lengthMenu: '_MENU_',
     }
   });
+
+
+$('#data-anggota').DataTable({
+    language: {
+      searchPlaceholder: 'Search...',
+      sSearch: '',
+      lengthMenu: '_MENU_',
+    }
+  });

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class OrganisasiMembers extends Model
 {
     protected $table = 'organisasi_members';
-    protected $primaryKey = null;
+    protected $primaryKey = 'member_id';
     public $incrementing = false;
     
 }

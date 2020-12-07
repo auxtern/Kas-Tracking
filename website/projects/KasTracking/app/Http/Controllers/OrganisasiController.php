@@ -6,9 +6,12 @@ use App\Helpers\Tools;
 use App\Organisasi;
 use App\User;
 use App\OrganisasiUsers;
+use App\OrganisasiMembers;
+use App\OrganisasiLogs;
 use App\UsersNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class OrganisasiController extends Controller
@@ -128,6 +131,8 @@ class OrganisasiController extends Controller
 
         $data['organisasi'] = Organisasi::where('organisasi_id', $organisasi_id)->get()->first();
 
+        $data['org_members'] = OrganisasiMembers::where('organisasi_id', $organisasi_id)->get();
+
         $data['url_foto'] = Tools::ambilFotoProfil($user->foto, $user->jenis_kelamin); 
         $data['status'] = Tools::ambilStatus($user->role);
         return view("main.organisasi.manage.members", $data);
@@ -181,8 +186,9 @@ class OrganisasiController extends Controller
     }
 
 
+    // ================================================================
     // POST HENDLER
-    // ----------------------------------------
+    // ================================================================
 
     /**
      * Menambahkan data organisasi ke database
@@ -195,6 +201,9 @@ class OrganisasiController extends Controller
         $this->validate($request, [
             'nama' => 'required|string|min:6|max:200',
             'lokasi' => 'required|string|min:6|max:200',
+            'jenis_iuran' => 'required',
+            'status_iuran' => 'required',
+            'jumlah_iuran' => 'required|min:0',
         ]);
 
         // Ambil data user yang login
@@ -205,7 +214,10 @@ class OrganisasiController extends Controller
         $organisasi->user_id = $user->id;
         $organisasi->nama = strip_tags($request->input('nama'));
         $organisasi->lokasi = strip_tags($request->input('lokasi'));
-        $organisasi->token = bin2hex(random_bytes(32));
+        $organisasi->jenis_iuran = strip_tags($request->input('jenis_iuran'));
+        $organisasi->status_iuran = strip_tags($request->input('status_iuran'));
+        $organisasi->jumlah_iuran = strip_tags($request->input('jumlah_iuran'));
+        // $organisasi->token = bin2hex(random_bytes(32));
         $organisasi->save();
 
         // Tambahkan user pembuat ke organisasi members
@@ -213,12 +225,17 @@ class OrganisasiController extends Controller
         $orgUsers->user_id = $user->id;
         $orgUsers->organisasi_id = $organisasi->organisasi_id;
         $orgUsers->save();
+        
+        // Tambahkan log organisasi
+        $orgUsers = new OrganisasiLogs();
+        $orgUsers->user_id = $user->id;
+        $orgUsers->organisasi_id = $organisasi->organisasi_id;
+        $orgUsers->pesan = "Organisasi " . $organisasi->nama . " dibuat.";
+        $orgUsers->save();
 
         return redirect('organisasi')->with('success', 'Berhasil membuat organisasi!');
     }
 
-
-    
 
     /**
      * Menambahkan data organisasi ke database
@@ -232,6 +249,9 @@ class OrganisasiController extends Controller
             'organisasi_id' => 'required',
             'nama' => 'required|string|min:6|max:200',
             'lokasi' => 'required|string|min:6|max:200',
+            'jenis_iuran' => 'required',
+            'status_iuran' => 'required',
+            'jumlah_iuran' => 'required|min:0',
         ]);
 
         // Ambil data user yang login
@@ -243,15 +263,30 @@ class OrganisasiController extends Controller
             return redirect()->back()->with('error', 'Gagal menyimpan perubahan!');
         }
 
-        // Buat data baru
+        // perbarui data baru
         $organisasi->nama = strip_tags($request->input('nama'));
         $organisasi->lokasi = strip_tags($request->input('lokasi'));
-        $organisasi->token = bin2hex(random_bytes(32));
+        $organisasi->jenis_iuran = strip_tags($request->input('jenis_iuran'));
+        $organisasi->status_iuran = strip_tags($request->input('status_iuran'));
+        $organisasi->jumlah_iuran = strip_tags($request->input('jumlah_iuran'));
+        // $organisasi->token = bin2hex(random_bytes(32));
         $organisasi->save();
+
+        // Tambahkan log organisasi
+        $orgUsers = new OrganisasiLogs();
+        $orgUsers->user_id = $user->id;
+        $orgUsers->organisasi_id = $organisasi->organisasi_id;
+        $orgUsers->pesan = "Organisasi " . $organisasi->nama . " diperbarui oleh " . $user->nama . ".";
+        $orgUsers->save();
+
+        $orgLogs = new OrganisasiLogs();
+        $orgLogs->user_id = $user->id;
+        $orgLogs->organisasi_id = $organisasi->organisasi_id;
+        $orgLogs->pesan = "memperbarui data organisasi.";
+        $orgLogs->save();
 
         return redirect()->back()->with('success', 'Berhasil menyimpan perubahan!');
     }
-
 
 
     /**
@@ -301,6 +336,12 @@ class OrganisasiController extends Controller
         $userNotif->pesan = $user->nama . " menjadikan kamu asisten bendahara di organisasi " . $organisasi->nama;
         $userNotif->save();
 
+        $orgLogs = new OrganisasiLogs();
+        $orgLogs->user_id = $user->id;
+        $orgLogs->organisasi_id = $organisasi_id;
+        $orgLogs->pesan = "menambahkan asisten bendahara baru dengan nama: " . $userAdd->nama;
+        $orgLogs->save();
+
         return redirect()->back()->with('success', 'Berhasil menambahkan bendahara!');
     }
 
@@ -343,9 +384,143 @@ class OrganisasiController extends Controller
         $userNotif->pesan = $user->nama . " mengeluarkan kamu dari organisasi " . $organisasi->nama . " dengan alasan: " . $request->input('alasan');
         $userNotif->save();
 
+        $orgLogs = new OrganisasiLogs();
+        $orgLogs->user_id = $user->id;
+        $orgLogs->organisasi_id = $organisasi_id;
+        $orgLogs->pesan = "mencopot jabatan asisten bendahara untuk: " . $userAdd->nama;
+        $orgLogs->save();
+
         return redirect()->back()->with('success', 'Berhasil mengeluarkan bendahara!');
     }
 
+
+        /**
+     * Menambahkan data organisasi ke database
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function members(Request $request, $organisasi_id)
+    {
+        // Ambil data user yang login
+        $user = Auth::user();
+
+        // Ambil data organisasi
+        $organisasi = Organisasi::where('organisasi_id', $organisasi_id)->get()->first();
+    
+
+        if(!$organisasi){
+            return redirect()->back()->with('error', 'Organisasi tidak ditemukan!');
+        }
+
+
+        $validator = Validator::make($request->all(), [
+            'member_id' => 'required|string|min:1|max:200',
+            'nama' => 'required|string|min:6|max:150',
+            'jenis_kelamin' => 'required',
+            'tipe_pembayaran' => 'required',
+            'whatsapp' => 'nullable|unique:organisasi_members',
+            'email' => 'nullable|unique:organisasi_members',
+            'keys' => 'required|string|min:6|max:20',
+        ]);
+
+        if ($validator->fails()){
+            return redirect()->back()->with('error', 'Data anggota yang akan ditambahkan tidak valid!');
+        }
+
+        $userInOrg = OrganisasiUsers::where('user_id', $user->id)->where('organisasi_id', $organisasi_id)->get()->first();
+        if(!$userInOrg){
+            return redirect()->back()->with('error', 'Kamu tidak memiliki akses untuk organisasi ini!');
+        }
+
+        // Tambahkan user pembuat ke organisasi members
+        $orgMembers = new OrganisasiMembers();
+        $orgMembers->member_id = "m" . $organisasi_id . "_" . $request->input('member_id');
+        $orgMembers->user_id = $user->id;
+        $orgMembers->organisasi_id = $organisasi_id;
+        $orgMembers->nama = $request->input('nama');
+        $orgMembers->jenis_kelamin = $request->input('jenis_kelamin');
+        $orgMembers->tipe_pembayaran = $request->input('tipe_pembayaran');
+        if($request->input('whatsapp') != ""){
+            $orgMembers->whatsapp = $request->input('whatsapp');
+        }
+        if($request->input('email') != ""){
+            $orgMembers->email = $request->input('email');
+        }
+        $orgMembers->keys = $request->input('keys');
+        $orgMembers->save();
+
+        $orgLogs = new OrganisasiLogs();
+        $orgLogs->user_id = $user->id;
+        $orgLogs->organisasi_id = $organisasi_id;
+        $orgLogs->pesan = "menambahkan anggota baru dengan nama: " . $request->input('nama');
+        $orgLogs->save();
+
+        return redirect()->back()->with('success', 'Berhasil menambahkan anggota!');
+    }
+
+
+    public function membersUpdate(Request $request, $organisasi_id)
+    {
+        // Ambil data user yang login
+        $user = Auth::user();
+
+        // Ambil data organisasi
+        $organisasi = Organisasi::where('organisasi_id', $organisasi_id)->get()->first();
+    
+
+        if(!$organisasi){
+            return redirect()->back()->with('error', 'Organisasi tidak ditemukan!');
+        }
+
+        $member_id = $request->input('member_id');
+
+        $validator = Validator::make($request->all(), [
+            'member_id' => 'required|string|min:1|max:200',
+            'nama' => 'required|string|min:6|max:150',
+            'jenis_kelamin' => 'required',
+            'tipe_pembayaran' => 'required',
+            'whatsapp' => 'nullable|unique:organisasi_members,whatsapp,'.$member_id . ',member_id',
+            'email' => 'nullable|unique:organisasi_members,email,'. $member_id . ',member_id',
+            'keys' => 'required|string|min:6|max:20',
+        ]);
+
+        if ($validator->fails()){
+            return redirect()->back()->with('error', 'Data anggota yang akan diperbarui tidak valid!');
+        }
+
+        $userInOrg = OrganisasiUsers::where('user_id', $user->id)->where('organisasi_id', $organisasi_id)->get()->first();
+        if(!$userInOrg){
+            return redirect()->back()->with('error', 'Kamu tidak memiliki akses untuk organisasi ini!');
+        }
+
+        // Tambahkan user pembuat ke organisasi members
+        $orgMembers = OrganisasiMembers::where('member_id', $request->input('member_id'))->where('organisasi_id', $organisasi_id)->get()->first();
+
+        if(!$orgMembers){
+            return redirect()->back()->with('error', 'Anggota tidak terdaftar di organisasi ini!');
+        }
+
+        $orgMembers->nama = $request->input('nama');
+        $orgMembers->jenis_kelamin = $request->input('jenis_kelamin');
+        $orgMembers->tipe_pembayaran = $request->input('tipe_pembayaran');
+        if($request->input('whatsapp') != ""){
+            $orgMembers->whatsapp = $request->input('whatsapp');
+        }
+        if($request->input('email') != ""){
+            $orgMembers->email = $request->input('email');
+        }
+        $orgMembers->keys = $request->input('keys');
+        $orgMembers->save();
+
+        
+        $orgLogs = new OrganisasiLogs();
+        $orgLogs->user_id = $user->id;
+        $orgLogs->organisasi_id = $organisasi_id;
+        $orgLogs->pesan = "memperbarui data anggota dengan nama: " . $request->input('nama');
+        $orgLogs->save();
+
+        return redirect()->back()->with('success', 'Berhasil memperbarui data anggota!');
+    }
 
 
 }
