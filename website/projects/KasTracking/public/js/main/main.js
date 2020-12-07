@@ -1,4 +1,5 @@
 
+
 feather.replace();
 
 // Utils
@@ -5067,8 +5068,8 @@ $(document).ready(function() {
           document.msExitFullscreen();
         }
       }
-    })
-
+    });
+    
 	// ______________Active Class
 	$(document).ready(function() {
 		$(".horizontalMenu-list li a").each(function() {

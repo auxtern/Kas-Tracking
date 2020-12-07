@@ -17,12 +17,38 @@ Auth::routes(['verify' => true]);
 Route::get('/', 'OrganisasiController@index')->name('/');
 Route::get('home', 'OrganisasiController@index')->name('home');
 
-// ORGANISASI
+/*
+==============================================================
+ORGANISASI
+==============================================================
+*/
+
+// DASBOR ORGANISASI
 Route::get('organisasi', 'OrganisasiController@index')->name('organisasi');
 
+// HALAMAN BUAT ORGANISASI
 Route::get('organisasi/create', 'OrganisasiController@createView')->name('organisasi/create');
+
+// BUAT ORGANISASI
 Route::post('organisasi/create', 'OrganisasiController@create')->name('organisasi/create');
 
+// HALAMAN BENDAHARA
+Route::get('organisasi/manage/users/{organisasi_id}', 'OrganisasiController@manageUsers')->name('organisasi/manage/users');
+
+// TAMBAH BENDAHARA
+Route::post('organisasi/manage/users/{organisasi_id}', 'OrganisasiController@users')->name('organisasi/manage/users');
+
+// HAPUS BENDAHARA
+Route::post('organisasi/manage/users/delete/{organisasi_id}', 'OrganisasiController@usersDelete')->name('organisasi/manage/users/delete');
+
+Route::get('organisasi/manage/{organisasi_id}', 'OrganisasiController@manage')->name('organisasi/manage');
+
+
+Route::get('organisasi/manage/members/{organisasi_id}', 'OrganisasiController@manageMembers')->name('organisasi/manage/members');
+Route::get('organisasi/manage/money/{organisasi_id}', 'OrganisasiController@manageMoney')->name('organisasi/manage/money');
+Route::get('organisasi/manage/settings/{organisasi_id}', 'OrganisasiController@manageSettings')->name('organisasi/manage/settings');
+
+Route::post('organisasi/update', 'OrganisasiController@update')->name('organisasi/update');
 
 
 Route::get('profile', 'ProfileController@index')->name('profile');

@@ -15,7 +15,7 @@ class OrganisasiUsers extends Migration
     {
         Schema::create('organisasi_users', function (Blueprint $table) {
             $table->integer('user_id')->unsigned()->index('user_id')->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->increments('organisasi_id')->unsigned()->index('organisasi_id')->foreign('organisasi_id')->references('organisasi_id')->on('organisasi')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('organisasi_id')->unsigned()->index('organisasi_id')->foreign('organisasi_id')->references('organisasi_id')->on('organisasi')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

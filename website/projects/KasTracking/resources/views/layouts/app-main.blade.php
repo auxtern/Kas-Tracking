@@ -28,6 +28,9 @@
 
     <!-- Simplebar css-->
     <link href="{{ asset('../node_modules/simplebar/dist/simplebar.min.css') }}" rel="stylesheet"/> 
+    
+    <!-- Growl css-->
+    <link href="{{ asset('lib/jquery.growl.css') }}" rel="stylesheet"/> 
 
     <!-- Color Skin css -->
     <link href="{{ asset('css/main/theme1.css') }}" rel="stylesheet"/> 
@@ -83,9 +86,11 @@
               <a class="side-menu__item" href="{{ route('organisasi') }}">
               <i data-feather="layers" class="side-menu__icon"></i>
                   <span class="side-menu__label">Organisasi</span>
-                  <span class="badge badge-success side-badge">0</span>
+                  <span class="badge badge-success side-badge">@yield('nOrganisasi')</span>
               </a>
-          </li>
+            </li>
+
+            @yield('side-menu')
             
           </ul>
         </aside>
@@ -112,23 +117,7 @@
                     </a>
                   </div>
 
-                  <div class="mt-1">
-                    <form class="form-inline">
-                      <div class="search-element">
-                        <input type="search" class="form-control header-search" placeholder="Cari…" aria-label="Search" tabindex="1"/> 
-                        <button class="btn btn-primary-color" type="submit">
-                          <i data-feather="search" class="text-icon"></i>
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-
-                  <!-- SEARCH -->
                   <div class="d-flex order-lg-2 ml-auto">
-                    <a href="#" data-toggle="search" class="nav-link nav-link-lg d-md-none navsearch">
-                      <i data-feather="search" class="text-icon"></i>
-                    </a>
-
                     <div class="dropdown header-fullscreen">
                       <a class="nav-link icon full-screen-link p-0" id="fullscreen-button"> 
                         <i data-feather="minimize" class="header-icon"></i>
@@ -136,10 +125,10 @@
                     </div>
 
                     <div class="dropdown header-message">
-                      <a class="nav-link icon" data-toggle="dropdown">
+                      {{-- <a class="nav-link icon" data-toggle="dropdown">
                         <i data-feather="bell" class="header-icon"></i>
                         <span class="badge badge-success side-badge">3</span>
-                      </a>
+                      </a> --}}
 
                       <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow animated">
                         <div class="dropdown-header shadow">
@@ -262,12 +251,11 @@
     <script src="{{ asset('../node_modules/apexcharts/dist/apexcharts.min.js') }}"></script>
     <script src="{{ asset('../node_modules/simplebar/dist/simplebar.min.js') }}"></script>
     <script src="{{ asset('../node_modules/feather-icons/dist/feather.min.js') }}"></script>
-
+    <script src="{{ asset('lib/jquery.growl.js') }}"></script>
 
     <!-- Internal JS -->
     @yield('internalJS')
     <script src="{{ asset('js/main/chart.js') }}"></script>
     <script src="{{ asset('js/main/main.js') }}"></script>
-    
   </body>
 </html>

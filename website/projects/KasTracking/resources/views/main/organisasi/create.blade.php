@@ -29,7 +29,7 @@
     </div>
     <div class="card-body">
 
-      <form method="POST" accept="{{ route('organisasi/create') }}" class="form-horizontal">
+      <form method="POST" action="{{ route('organisasi/create') }}" class="form-horizontal">
         @csrf
         
         <div class="form-group row">
@@ -67,7 +67,7 @@
 
 
 @section('internalJS')
-  
+
 @endsection
 
 

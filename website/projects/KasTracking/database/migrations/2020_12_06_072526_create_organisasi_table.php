@@ -18,6 +18,7 @@ class CreateOrganisasiTable extends Migration
             $table->increments('organisasi_id');
             $table->string('nama', 200);
             $table->string('lokasi', 200);
+            $table->string('token');
             $table->timestamps();
         });
     }

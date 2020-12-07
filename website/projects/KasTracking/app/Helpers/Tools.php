@@ -4,6 +4,16 @@ namespace App\Helpers;
 
 class Tools
 {
+
+    
+    public static function tanggalHariIndonesia($value)
+    {
+        \Carbon\Carbon::setLocale('id');
+        return \Carbon\Carbon::parse($value)->format('l, d F Y');
+        // return \Carbon\Carbon::now()->translatedFormat('l j F Y H:i:s');
+    }
+
+
     public static function ambilFotoProfil($foto, $jenis_kelamin){
         if($foto){
             return $foto;

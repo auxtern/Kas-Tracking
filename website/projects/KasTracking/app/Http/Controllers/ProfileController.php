@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Tools;
+use App\Organisasi;
+use App\Helpers\Tools;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -18,8 +19,15 @@ class ProfileController extends Controller
 
     public function index()
     {
-        $data['url_foto'] = Tools::ambilFotoProfil(Auth::user()->foto, Auth::user()->jenis_kelamin); 
-        $data['status'] = Tools::ambilStatus(Auth::user()->role);
+        $user = Auth::user();
+
+        $data['url_foto'] = Tools::ambilFotoProfil($user->foto, $user->jenis_kelamin); 
+        $data['status'] = Tools::ambilStatus($user->role);
+
+        $data['organisasi'] = Organisasi::whereIn('organisasi_id', function($q) use ($user){
+            $q->from('organisasi_users')->select('organisasi_id')->where('user_id', $user->id);
+        })->get()->toArray();
+
         return view('main/profile/index', $data);
     }
 
@@ -102,16 +110,15 @@ class ProfileController extends Controller
             'tanggal_lahir' => 'required|date',
             'jenis_kelamin' => 'required',
             'provinsi' => 'required',
-            'organisasi' => 'required|string|min:6|max:150',
         ]);
 
     
         $user = Auth::user();
         $user->nama = $request->input('nama');
         $user->tanggal_lahir = $request->input('tanggal_lahir');
+        $user->bio = $request->input('bio');
         $user->jenis_kelamin = $request->input('jenis_kelamin');
         $user->provinsi = $request->input('provinsi');
-        $user->organisasi = $request->input('organisasi');
         $user->save();
 
        

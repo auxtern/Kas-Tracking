@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('whatsapp', 150)->unique();
             $table->string('email', 150)->unique();
             $table->string('password');
-            $table->string('biografi')->nullable();
+            $table->string('bio')->nullable();
             $table->string('foto')->nullable();
             $table->smallInteger('role')->default(90);
             $table->timestamp('email_verified_at')->nullable();

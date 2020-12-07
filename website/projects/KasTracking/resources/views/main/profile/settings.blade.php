@@ -30,23 +30,23 @@
       <h4 class="page-title mb-0">Hay, {{ Auth::user()->nama }}</h4>
       <ol class="breadcrumb">
         <li class="breadcrumb-item active" aria-current="page">
-          <a href="{{ route('/') }}"><i class="fa fa-home mr-2 fs-14"></i>Dashboard</a>
+          <a href="{{ route('/') }}"><i class="fa fa-home mr-2 fs-14"></i>Halaman Utama</a>
         </li>
         <li class="breadcrumb-item active" aria-current="page">
-          <a href="{{ route('profile') }}">Profile</a>
+          <a href="{{ route('profile') }}">Profil</a>
         </li>
         <li class="breadcrumb-item">
-          <span>Settings</span>
+          <span>Pengaturan</span>
         </li>
       </ol>
     </div>
-    <div class="page-rightheader">
+    {{-- <div class="page-rightheader">
       <div class="btn btn-list">
         <a href="#" class="btn btn-info">
           <i class="fa fa-comments mr-1"></i> TJ
         </a>
       </div>
-    </div>
+    </div> --}}
   </div>
   <!--End Page header-->
 @endsection
@@ -152,6 +152,13 @@
                 <input name="tanggal_lahir" type="date" class="form-control{{ $errors->has('tanggal_lahir') ? ' is-invalid' : '' }}" placeholder="Tanggal lahir" value="{{ Auth::user()->tanggal_lahir }}">
               </div>
             </div>
+            
+            <div class="col-sm-12 col-md-12">
+              <div class="form-group">
+                <label class="form-label">Bio</label>
+                <textarea name="bio" type="date" class="form-control{{ $errors->has('bio') ? ' is-invalid' : '' }}" rows="5">{{ Auth::user()->bio }}</textarea>
+              </div>
+            </div>
 
             <div class="col-sm-12 col-md-12">
               <div class="form-group ">
@@ -178,13 +185,6 @@
                       <option value="{{ $prov['nama'] }}">{{ $prov['nama'] }}</option>
                   @endforeach
                 </select>
-              </div>
-            </div>
-
-            <div class="col-md-12">
-              <div class="form-group">
-                <label class="form-label">Nama Organisasi</label>
-                <input name="organisasi" type="text" class="form-control{{ $errors->has('organisasi') ? ' is-invalid' : '' }}" placeholder="Nama organisasi" value="{{ Auth::user()->organisasi }}">
               </div>
             </div>
 

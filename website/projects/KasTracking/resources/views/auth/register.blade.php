@@ -13,7 +13,7 @@
         </a>
         <div class="page-links">
             <a href="{{ route('login') }}">{{ __('Masuk') }}</a>
-            <a href="page-register.html" class="active">{{ __('Daftar') }}</a>
+            <a href="{{ route('register') }}" class="active">{{ __('Daftar') }}</a>
         </div>
         <form method="POST" action="{{ route('register') }}">
             @csrf

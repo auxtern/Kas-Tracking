@@ -11,20 +11,20 @@
         <h4 class="page-title mb-0">Hay, {{ Auth::user()->nama }}</h4>
         <ol class="breadcrumb">
           <li class="breadcrumb-item active" aria-current="page">
-            <a href="{{ route('/') }}"><i class="fa fa-home mr-2 fs-14"></i>Dashboard</a>
+            <a href="{{ route('/') }}"><i class="fa fa-home mr-2 fs-14"></i>Halaman Utama</a>
           </li>
           <li class="breadcrumb-item">
-            <span>Profile</span>
+            <span>Profil</span>
           </li>
         </ol>
       </div>
-      <div class="page-rightheader">
+      {{-- <div class="page-rightheader">
         <div class="btn btn-list">
           <a href="#" class="btn btn-info">
             <i class="fa fa-comments mr-1"></i> TJ
           </a>
         </div>
-      </div>
+      </div> --}}
     </div>
     <!--End Page header-->
 @endsection
@@ -38,7 +38,7 @@
                     <img alt="" class="rounded-circle border p-0 img-profile" src="{{ $url_foto }}">
                         <div class="mt-1 ml-lg-5">
                             <h4 class="pro-user-username font-weight-bold mb-1">
-                                {{ Auth::user()->nama }} 
+                                {{ Auth::user()->nama }}
                                 <br>
                             </h4>
                             <h5 class="text-muted mb-1">
@@ -46,29 +46,8 @@
                             </h5>
                             <span class="badge badge-success">{{ $status }}</span>
 
-                            <div class="main-profile-contact-list d-lg-flex">
-                                <div class="media mr-3">
-                                    <div class="media-icon bg-info text-white mr-3 mt-1">
-                                        <i class="fa fa-users"></i>
-                                    </div>
-                                    <div class="media-body">
-                                        <small class="text-muted">Anggota</small>
-                                        <div class="font-weight-normal1">
-                                            500
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="media mr-3">
-                                    <div class="media-icon bg-info text-white mr-3 mt-1">
-                                        <i class="fas fa-money-check-alt"></i>
-                                    </div>
-                                    <div class="media-body">
-                                        <small class="text-muted">Uang Tersimpan</small>
-                                        <div class="font-weight-normal1">
-                                            Rp. 100,000,000.00
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="mt-3">
+                                <span class="text-muted">bergabung sejak <strong>{{ date("d M y", strtotime(Auth::user()->created_at)) }}</strong></span>       
                             </div>
                         </div>
                     </div>
@@ -86,8 +65,8 @@
                     <div class="tabs-menu1 px-3">
                         <ul class="nav">
                             <li><a href="#tab-7" class="active fs-14" data-toggle="tab">Tentang</a></li>
-                            <li><a href="#tab-8" data-toggle="tab" class="fs-14">Anggota</a></li>
-                            <li><a href="#tab-9" data-toggle="tab" class="fs-14">Linimasa</a></li>
+                            <li><a href="#tab-8" data-toggle="tab" class="fs-14">Organisasi</a></li>
+                            {{-- <li><a href="#tab-9" data-toggle="tab" class="fs-14">Linimasa</a></li> --}}
                         </ul>
                     </div>
                 </div>
@@ -101,11 +80,22 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab-7">
                         <div class="card">
-                            <div class="card-body">
-                                <h5 class="font-weight-bold">Bio</h5>
-                                <div class="main-profile-bio mb-0">
-                                    <p>{{ Auth::user()->bio }}</p>
-                                </div>
+                            <div class="card-body mt-3">
+                                {{-- <h5 class="font-weight-bold">Data Diri</h5> --}}
+                                <div>
+                                    <ul class="list-group mb-3">
+                                        <li class="list-group-item active">User ID</li>
+                                        <li class="list-group-item">{{ Auth::user()->id }}</li>
+                                        <li class="list-group-item active">Tanggal Lahir</li>
+                                        <li class="list-group-item">{{ date("d-m-Y", strtotime( Auth::user()->tanggal_lahir)) }}</li>
+                                        <li class="list-group-item active">Jenis Kelamin</li>
+                                        <li class="list-group-item">{{ Auth::user()->jenis_kelamin }}</li>
+                                        <li class="list-group-item active">Provinsi Tempat Tinggal</li>
+                                        <li class="list-group-item">{{ Auth::user()->provinsi }}</li>
+                                        <li class="list-group-item active">Bio</li>
+                                        <li class="list-group-item">{{ Auth::user()->bio }}</li>
+                                    </ul>
+                                </div><!-- main-profile-contact-list -->
                             </div>
                             <div class="card-body border-top">
                                 <h5 class="font-weight-bold">Kontak</h5>
@@ -136,32 +126,31 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="tab-pane" id="tab-8">
                         <div class="card p-5">
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center border p-3 mb-3 br-7">
-                                        <div class="avatar avatar-lg brround d-block cover-image" data-image-src="https://laravel.spruko.com/admitro/Vertical-IconSidedar-Light/assets/images/users/7.jpg">
+
+                                @foreach ($organisasi as $item)
+                                    <div class="col-lg-4">
+                                        <div class="d-flex align-items-center border border-primary justify-content-between  py-3">
+                                            <div class="wrapper mx-3">
+                                                <p class="mb-0 mt-1 font-weight-semibold">
+                                                    {{ $item['nama'] }}
+                                                </p>
+                                            </div>
                                         </div>
-                                        <div class="wrapper ml-3">
-                                            <p class="mb-0 mt-1 text-dark font-weight-semibold">Denis Rosenblum</p>
-                                            <small>Project Manager</small>
-                                        </div>
-                                        <div class="float-right ml-auto">
-                                            <a href="#" class="btn btn-primary btn-sm"><i class="si si-eye mr-1"></i>View</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                    </div>    
+                                @endforeach
                             
-                                <div class="col-md-12">
-                                    <a class="btn btn-block btn-light" href="#"><i class="fe fe-chevron-down"></i> See All</a>
-                                </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="tab-pane" id="tab-9">
                         <ul class="timelineleft pb-5">
-                            <li class="timeleft-label"><span class="bg-danger">10 May. 2020</span></li>
+                            <li class="timeleft-label">
+                                <span class="bg-danger">10 May. 2020</span></li>
                             <li>
                                 <i class="fa fa-envelope bg-primary"></i>
                                 <div class="timelineleft-item">
@@ -186,75 +175,9 @@
                                     <h3 class="timelineleft-header no-border"><a href="#">Sarah Young</a> accepted your friend request</h3>
                                 </div>
                             </li>
-                            <li>
-                                <i class="fa fa-comments bg-warning"></i>
-                                <div class="timelineleft-item">
-                                    <span class="time"><i class="fa fa-clock-o text-danger"></i> 27 mins ago</span>
-                                    <h3 class="timelineleft-header"><a href="#">Jay White</a> commented on your post</h3>
-                                    <div class="timelineleft-body">
-                                        Take me to your leader!
-                                        Switzerland is small and neutral!
-                                        We are more like Germany, ambitious and misunderstood!
-                                    </div>
-                                    <div class="timelineleft-footer">
-                                        <a class="btn btn-info text-white btn-flat btn-sm">View comment</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <i class="fa fa-video-camera bg-pink"></i>
-                                <div class="timelineleft-item">
-                                    <span class="time"><i class="fa fa-clock-o text-danger"></i> 1 hour ago</span>
-                                    <h3 class="timelineleft-header"><a href="#">Mr. John</a> shared a video</h3>
-                                    <div class="timelineleft-body">
-                                        <div class="embed-responsive embed-responsive-16by9 w-75">
-                                            <iframe class="embed-responsive-item" src="#" allowfullscreen=""></iframe>
-                                        </div>
-                                        <div class="timelineleft-body mt-3">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus.Lorem ipsum dolor sit amet
-                                        </div>
-                                    </div>
-                                    <div class="timelineleft-footer">
-                                        <a href="#" class="btn btn-sm bg-warning text-white">See comments</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="timeleft-label">
-                                <span class="bg-success"> 3 Jan. 2014</span>
-                            </li>
-                            <li>
-                                <i class="fa fa-camera bg-orange"></i>
-                                <div class="timelineleft-item">
-                                    <span class="time"><i class="fa fa-clock-o text-danger"></i> 2 days ago</span>
-                                    <h3 class="timelineleft-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
-                                    <div class="timelineleft-body">
-                                        <img src="https://laravel.spruko.com/admitro/Vertical-IconSidedar-Light/assets/images/photos/1.jpg" alt="..." class="margin mt-2 mb-2">
-                                        <img src="https://laravel.spruko.com/admitro/Vertical-IconSidedar-Light/assets/images/photos/2.jpg" alt="..." class="margin mt-2 mb-2 ">
-                                        <img src="https://laravel.spruko.com/admitro/Vertical-IconSidedar-Light/assets/images/photos/3.jpg" alt="..." class="margin mt-2 mb-2 ">
-                                        <img src="https://laravel.spruko.com/admitro/Vertical-IconSidedar-Light/assets/images/photos/4.jpg" alt="..." class="margin mt-2 mb-2">
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <i class="fa fa-video-camera bg-pink"></i>
-                                <div class="timelineleft-item">
-                                    <span class="time"><i class="fa fa-clock-o text-danger"></i> 5 days ago</span>
-                                    <h3 class="timelineleft-header"><a href="#">Mr. Doe</a> shared a video</h3>
-                                    <div class="timelineleft-body">
-                                        <div class="embed-responsive embed-responsive-16by9 w-75">
-                                            <iframe class="embed-responsive-item" src="#" allowfullscreen=""></iframe>
-                                        </div>
-                                    </div>
-                                    <div class="timelineleft-footer">
-                                        <a href="#" class="btn btn-sm bg-warning text-white">See comments</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <i class="fa fa-clock-o bg-success pb-3"></i>
-                            </li>
                         </ul>
                     </div>
+
                 </div>
             </div>
         </div>
