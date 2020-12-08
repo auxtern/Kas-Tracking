@@ -28,6 +28,9 @@
 
     <!-- Simplebar css-->
     <link href="{{ asset('../node_modules/simplebar/dist/simplebar.min.css') }}" rel="stylesheet"/> 
+    
+    <!-- Growl css-->
+    <link href="{{ asset('lib/jquery.growl.css') }}" rel="stylesheet"/> 
 
     <!-- Color Skin css -->
     <link href="{{ asset('css/main/theme1.css') }}" rel="stylesheet"/> 
@@ -53,7 +56,7 @@
         <!-- aside -->
         <aside class="app-sidebar">
           <div class="app-sidebar__logo">
-            <a class="header-brand" href="{{ route('home') }}">
+            <a class="header-brand" href="{{ route('member') }}">
               <img src="{{ asset('img/kas-tracking-text.png') }}" class="header-brand-img desktop-lgo" alt=""/>
               <img src="{{ asset('img/kas-tracking-text.png') }}" class="header-brand-img dark-logo" alt=""/>
               <img src="{{ asset('img/kas-tracking.png') }}" class="header-brand-img mobile-logo" alt=""/>
@@ -67,20 +70,51 @@
               </div>
               <div class="user-info">
                 <h5 class="mb-1">
-                  {{ Auth::user()->nama }}
-                  <i class="ion-checkmark-circled text-success fs-12"></i>
+                  {{ $cmember->nama }}
                 </h5>
                 <span class="badge badge-success-light mt-2">{{ $status }}</span>
               </div>
             </div>
+            
+            <div class="user-info">
+                <ul class="list-group text-left mt-3">
+                    <li class="list-group-item justify-content-between">
+                        <strong class="text-muted">Jenis Iuran</strong>
+                        <span class="badgetext badge badge-info badge-pill">
+                            {{ $organisasi->jenis_iuran }}
+                        </span>
+                    </li>
+                    <li class="list-group-item justify-content-between">
+                        <strong class="text-muted">Jumlah Iuran</strong>
+                        <span class="badgetext badge badge-secondary badge-pill">
+                            {{ App\Helpers\Tools::formatRupiah($organisasi->jumlah_iuran) }}
+                        </span>
+                    </li>
+                </ul>
+            </div>
+
           </div>
           
           <ul class="side-menu app-sidebar3">
 
-            <li class="side-item side-item-category mt-4">Menu Utama</li>
+            <li class="side-item side-item-category mt-4">Menu Organisasi</li>
 
-            @yield('main-menu')
-            
+            <li class="slide">
+                <a class="side-menu__item {{ (Route::currentRouteName() == 'member/dashboard') ? 'active' : 'bg-white' }}" href="{{ route('member/dashboard') }}">
+                <i data-feather="grid" class="side-menu__icon"></i>
+                    <span class="side-menu__label">Dasbor</span>
+                </a>
+            </li>
+        
+        
+            <li class="slide">
+                <a class="side-menu__item {{ (Route::currentRouteName() == 'member/tracking') ? 'active' : 'bg-white' }}" href="{{ route('member/tracking', ['organisasi_id'=>$organisasi->organisasi_id]) }}">
+                <i data-feather="dollar-sign" class="side-menu__icon"></i>
+                    <span class="side-menu__label">Keuangan</span>
+                    <span class="badge badge-success side-badge">@yield('nMoney')</span>
+                </a>
+            </li>
+
           </ul>
         </aside>
         <!-- aside closed -->
@@ -106,23 +140,7 @@
                     </a>
                   </div>
 
-                  <div class="mt-1">
-                    <form class="form-inline">
-                      <div class="search-element">
-                        <input type="search" class="form-control header-search" placeholder="Cari…" aria-label="Search" tabindex="1"/> 
-                        <button class="btn btn-primary-color" type="submit">
-                          <i data-feather="search" class="text-icon"></i>
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-
-                  <!-- SEARCH -->
                   <div class="d-flex order-lg-2 ml-auto">
-                    <a href="#" data-toggle="search" class="nav-link nav-link-lg d-md-none navsearch">
-                      <i data-feather="search" class="text-icon"></i>
-                    </a>
-
                     <div class="dropdown header-fullscreen">
                       <a class="nav-link icon full-screen-link p-0" id="fullscreen-button"> 
                         <i data-feather="minimize" class="header-icon"></i>
@@ -130,10 +148,10 @@
                     </div>
 
                     <div class="dropdown header-message">
-                      <a class="nav-link icon" data-toggle="dropdown">
+                      {{-- <a class="nav-link icon" data-toggle="dropdown">
                         <i data-feather="bell" class="header-icon"></i>
                         <span class="badge badge-success side-badge">3</span>
-                      </a>
+                      </a> --}}
 
                       <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow animated">
                         <div class="dropdown-header shadow">
@@ -144,17 +162,17 @@
                           <a class="dropdown-item border-bottom" href="#">
                             <div class="d-flex align-items-center">
                               <div class="">
-                                <span class="avatar avatar-md brround align-self-center cover-image" data-image-src="{{ $url_foto }}">
+                                <span class="avatar avatar-md brround align-self-center cover-image" data-image-src="">
                                 </span>
                               </div>
                               <div class="d-flex">
                                 <div class="pl-3">
-                                  <h6 class="mb-1">Jack Wright</h6>
+                                  <h6 class="mb-1">-</h6>
                                   <p class="fs-13 mb-1">
-                                    All the best your template awesome
+                                    -
                                   </p>
                                   <div class="small text-muted">
-                                    3 hours ago
+                                    -
                                   </div>
                                 </div>
                               </div>
@@ -169,41 +187,34 @@
                       </div>
                     </div>
 
+
+                    
                     <div class="dropdown profile-dropdown">
-                      <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
-                        <span>
-                          <img src="{{ $url_foto }}" alt="img" class="avatar avatar-md brround"/> 
-                        </span>
-                      </a>
-                      <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow animated">
-                        <div class="text-center">
-                            <span class="text-center user py-2 font-weight-bold">
-                                {{ Auth::user()->nama }}
-                                <br>
-                                <span class="badge badge-success-light mt-2">{{ $status }}</span>
-                          <div class="dropdown-divider"></div>
+                        <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
+                          <span>
+                            <img src="{{ $url_foto }}" alt="img" class="avatar avatar-md brround"/> 
+                          </span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow animated">
+                          <div class="text-center">
+                              <span class="text-center user py-2 font-weight-bold">
+                                  {{ $cmember->nama }}
+                                  <br>
+                                  <span class="badge badge-success-light mt-2">{{ $status }}</span>
+                            <div class="dropdown-divider"></div>
+                          </div>
+  
+                          <a class="dropdown-item d-flex" href="{{ route('member/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i data-feather="log-out" class="text-icon mr-3"></i>
+                            <div class="">Keluar</div>
+                          </a>
+                          <form id="logout-form" action="{{ route('member/logout') }}" method="POST" style="display: none;">
+                            @csrf
+                          </form>
+                          
                         </div>
-
-                        <a class="dropdown-item d-flex" href="{{ route('profile') }}">
-                          <i data-feather="user" class="text-icon mr-3"></i>
-                          <div class="">Profil</div>
-                        </a>
-
-                        <a class="dropdown-item d-flex" href="{{ route('profile/settings') }}">
-                          <i data-feather="settings" class="text-icon mr-3"></i>
-                          <div class="">Pengaturan</div>
-                        </a>
-
-                        <a class="dropdown-item d-flex" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                          <i data-feather="log-out" class="text-icon mr-3"></i>
-                          <div class="">Keluar</div>
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                          @csrf
-                        </form>
-                        
                       </div>
-                    </div>
+
 
                   </div>
                 </div>
@@ -256,12 +267,11 @@
     <script src="{{ asset('../node_modules/apexcharts/dist/apexcharts.min.js') }}"></script>
     <script src="{{ asset('../node_modules/simplebar/dist/simplebar.min.js') }}"></script>
     <script src="{{ asset('../node_modules/feather-icons/dist/feather.min.js') }}"></script>
-
+    <script src="{{ asset('lib/jquery.growl.js') }}"></script>
 
     <!-- Internal JS -->
     @yield('internalJS')
     <script src="{{ asset('js/main/chart.js') }}"></script>
     <script src="{{ asset('js/main/main.js') }}"></script>
-    
   </body>
 </html>

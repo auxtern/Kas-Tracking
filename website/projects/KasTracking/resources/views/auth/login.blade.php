@@ -43,6 +43,8 @@
                     <button id="submit" type="submit" class="ibtn">{{ __('Masuk') }}</button> <a href="{{ route('password.request') }}">Lupa kata sandi?</a>
                 </div>
             @endif
+
+            <a class="text-white" href="{{ route('member') }}">Bukan bendahara? masuk sebagai anggota <i class="fa fa-angle-double-right"></i></a>
             
         </form>
     </div>

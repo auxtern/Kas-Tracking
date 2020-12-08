@@ -10,4 +10,8 @@ class OrganisasiMembers extends Model
     protected $primaryKey = 'member_id';
     public $incrementing = false;
     
+    protected $fillable = [
+        'member_id', 'user_id', 'organisasi_id', 'nama', 'jenis_kelamin', 'tipe_pembayaran', 'keys', 'whatsapp', 'email', 'created_at',
+    ];
+
 }

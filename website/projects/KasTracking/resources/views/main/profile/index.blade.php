@@ -42,12 +42,12 @@
                                 <br>
                             </h4>
                             <h5 class="text-muted mb-1">
-                                {{ Auth::user()->organisasi }} 
+                                {{ Auth::user()->organisasi }}
                             </h5>
                             <span class="badge badge-success">{{ $status }}</span>
 
                             <div class="mt-3">
-                                <span class="text-muted">bergabung sejak <strong>{{ date("d M y", strtotime(Auth::user()->created_at)) }}</strong></span>       
+                                <span class="text-muted">bergabung sejak <strong>{{ date("d M y", strtotime(Auth::user()->created_at)) }}</strong></span>
                             </div>
                         </div>
                     </div>
@@ -84,7 +84,7 @@
                                 {{-- <h5 class="font-weight-bold">Data Diri</h5> --}}
                                 <div>
                                     <ul class="list-group mb-3">
-                                        <li class="list-group-item active">User ID</li>
+                                        <li class="list-group-item active">ID Pengguna</li>
                                         <li class="list-group-item">{{ Auth::user()->id }}</li>
                                         <li class="list-group-item active">Tanggal Lahir</li>
                                         <li class="list-group-item">{{ date("d-m-Y", strtotime( Auth::user()->tanggal_lahir)) }}</li>
@@ -140,9 +140,9 @@
                                                 </p>
                                             </div>
                                         </div>
-                                    </div>    
+                                    </div>
                                 @endforeach
-                            
+
                             </div>
                         </div>
                     </div>

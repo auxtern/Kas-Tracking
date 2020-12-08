@@ -71,15 +71,38 @@
               <div class="user-info">
                 <h5 class="mb-1">
                   {{ Auth::user()->nama }}
-                  <i class="ion-checkmark-circled text-success fs-12"></i>
+                  <i class="fa fa-check-circle text-success"></i>
                 </h5>
                 <span class="badge badge-success-light mt-2">{{ $status }}</span>
               </div>
+            </div>
+            <div class="user-info">
+            @yield('info-org')
             </div>
           </div>
           
           <ul class="side-menu app-sidebar3">
 
+            @if (Auth::user()->role == 99)
+            <li class="side-item side-item-category mt-4">Menu Admin</li>
+
+            <li class="slide ">
+              <a class="side-menu__item bg-white" href="{{ route('organisasi') }}">
+              <i data-feather="users" class="side-menu__icon"></i>
+                  <span class="side-menu__label">Daftar Pengguna</span>
+                  <span class="badge badge-success side-badge"></span>
+              </a>
+            </li>
+
+            <li class="slide ">
+              <a class="side-menu__item bg-white" href="{{ route('organisasi') }}">
+              <i data-feather="layers" class="side-menu__icon"></i>
+                  <span class="side-menu__label">Daftar Organisasi</span>
+                  <span class="badge badge-success side-badge"></span>
+              </a>
+            </li>    
+            @endif
+            
             <li class="side-item side-item-category mt-4">Menu Utama</li>
 
             <li class="slide">

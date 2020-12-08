@@ -4,6 +4,19 @@
 {{ config('app.name', 'Kas Tracking') }} - Bendahara Organisasi
 @endsection
 
+@section('info-org')
+  <ul class="list-group text-left mt-3">
+    <li class="list-group-item justify-content-between">
+      <strong class="text-muted">Jenis Iuran</strong>
+      <span class="badgetext badge badge-info badge-pill">{{ $organisasi['jenis_iuran'] }}</span>
+    </li>
+    <li class="list-group-item justify-content-between">
+      <strong class="text-muted">Jumlah Iuran</strong>
+      <span class="badgetext badge badge-secondary badge-pill">Rp{{ number_format($organisasi['jumlah_iuran'], 0, ',', '.') }},00</span>
+    </li>
+  </ul>
+@endsection
+
 @section('side-menu')
   <li class="side-item side-item-category mt-4">Menu Organisasi</li>
 
@@ -21,7 +34,7 @@
           <span class="badge badge-success side-badge">@yield('nUsers')</span>
       </a>
     </li>
-  
+
 
   <li class="slide">
     <a class="side-menu__item bg-white" href="{{ route('organisasi/manage/members', ['organisasi_id'=>$organisasi['organisasi_id']]) }}">
@@ -112,7 +125,7 @@
                     <td>{{ $bendahara['email'] }}</td>
                     <td>
                       @php
-                        $orgUser = App\OrganisasiUsers::where('user_id', Auth::user()->id)->where('organisasi_id', $organisasi['organisasi_id'])->get()->first();  
+                        $orgUser = App\OrganisasiUsers::where('user_id', Auth::user()->id)->where('organisasi_id', $organisasi['organisasi_id'])->get()->first();
 
                       @endphp
                       {{ App\Helpers\Tools::tanggalHariIndonesia($orgUser['created_at']) }}
@@ -160,13 +173,13 @@
           <form method="POST" action="{{ route('organisasi/manage/users', ["organisasi_id"=>$organisasi['organisasi_id']]) }}">
             @csrf
             <div class="modal-body">
-              
+
                 <div class="form-group">
-                  <label for="user_id">User ID</label>
+                  <label for="user_id">ID Pengguna</label>
                   <input name="user_id" type="number" class="form-control" placeholder="Masukkan user id...">
-                  <small class="form-text text-muted">user id dapat dilihat pada halaman profil.</small>
+                  <small class="form-text text-muted">ID pengguna dapat dilihat pada halaman profil.</small>
                 </div>
-          
+
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
@@ -192,17 +205,17 @@
 
           <form method="POST" action="{{ route('organisasi/manage/users/delete', ["organisasi_id"=>$organisasi['organisasi_id']]) }}">
             @csrf
-            
+
             <div class="modal-body">
 
                 <input type="hidden" name="user_id" id="user_id_to_delete">
-              
+
                 <div class="form-group">
                   <label for="alasan">Alasan pengeluaran?</label>
                   <input name="alasan" type="text" class="form-control" placeholder="Masukkan alasan kamu mengeluarkan bendahara ini...">
                   <small class="form-text text-muted">(!) semua catatan dari bendahara yang akan dikeluarkan dialihkan ke akun kamu.</small>
                 </div>
-          
+
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-info" data-dismiss="modal">Batal</button>
@@ -225,38 +238,38 @@
 @endsection
 
 @section('internalJS')
-{{-- Data Table --}}
-<script src="{{ asset('lib/datatable/js/jquery.dataTables.js') }}"></script>
-<script src="{{ asset('lib/datatable/js/dataTables.bootstrap4.js') }}"></script>
-<script src="{{ asset('lib/datatable/js/dataTables.buttons.min.js') }}"></script>
-<script src="{{ asset('lib/datatable/js/buttons.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('lib/datatable/js/jszip.min.js') }}"></script>
-<script src="{{ asset('lib/datatable/js/pdfmake.min.js') }}"></script>
-<script src="{{ asset('lib/datatable/js/vfs_fonts.js') }}"></script>
-<script src="{{ asset('lib/datatable/js/buttons.html5.min.js') }}"></script>
-<script src="{{ asset('lib/datatable/js/buttons.print.min.js') }}"></script>
-<script src="{{ asset('lib/datatable/js/buttons.colVis.min.js') }}"></script>
-<script src="{{ asset('lib/datatable/dataTables.responsive.min.js') }}"></script>
-<script src="{{ asset('lib/datatable/responsive.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('js/main/datatable/datatable.js') }}"></script>
+  {{-- Data Table --}}
+  <script src="{{ asset('lib/datatable/js/jquery.dataTables.js') }}"></script>
+  <script src="{{ asset('lib/datatable/js/dataTables.bootstrap4.js') }}"></script>
+  <script src="{{ asset('lib/datatable/js/dataTables.buttons.min.js') }}"></script>
+  <script src="{{ asset('lib/datatable/js/buttons.bootstrap4.min.js') }}"></script>
+  <script src="{{ asset('lib/datatable/js/jszip.min.js') }}"></script>
+  <script src="{{ asset('lib/datatable/js/pdfmake.min.js') }}"></script>
+  <script src="{{ asset('lib/datatable/js/vfs_fonts.js') }}"></script>
+  <script src="{{ asset('lib/datatable/js/buttons.html5.min.js') }}"></script>
+  <script src="{{ asset('lib/datatable/js/buttons.print.min.js') }}"></script>
+  <script src="{{ asset('lib/datatable/js/buttons.colVis.min.js') }}"></script>
+  <script src="{{ asset('lib/datatable/dataTables.responsive.min.js') }}"></script>
+  <script src="{{ asset('lib/datatable/responsive.bootstrap4.min.js') }}"></script>
+  <script src="{{ asset('js/main/datatable/datatable.js') }}"></script>
 
-@if (Session::has('success'))
-  <script>
-    $.growl.notice({
-      title: "Sukses",
-      message: "{{ Session::get('success')}}"
-    });
-  </script>
-@endif
+  @if (Session::has('success'))
+    <script>
+      $.growl.notice({
+        title: "Sukses",
+        message: "{{ Session::get('success')}}"
+      });
+    </script>
+  @endif
 
-@if (Session::has('error'))
-  <script>
-    $.growl.error({
-      title: "Gagal",
-      message: "{{ Session::get('error')}}"
-    });
-  </script>
-@endif
+  @if (Session::has('error'))
+    <script>
+      $.growl.error({
+        title: "Gagal",
+        message: "{{ Session::get('error')}}"
+      });
+    </script>
+  @endif
 
 @endsection
 

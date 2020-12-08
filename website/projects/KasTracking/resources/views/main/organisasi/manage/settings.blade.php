@@ -4,6 +4,19 @@
 {{ config('app.name', 'Kas Tracking') }} - Pengaturan Organisasi
 @endsection
 
+@section('info-org')
+  <ul class="list-group text-left mt-3">
+    <li class="list-group-item justify-content-between">
+      <strong class="text-muted">Jenis Iuran</strong>
+      <span class="badgetext badge badge-info badge-pill">{{ $organisasi['jenis_iuran'] }}</span>
+    </li>
+    <li class="list-group-item justify-content-between">
+      <strong class="text-muted">Jumlah Iuran</strong>
+      <span class="badgetext badge badge-secondary badge-pill">Rp{{ number_format($organisasi['jumlah_iuran'], 0, ',', '.') }},00</span>
+    </li>
+  </ul>
+@endsection
+
 @section('side-menu')
   <li class="side-item side-item-category mt-4">Menu Organisasi</li>
 
@@ -23,7 +36,7 @@
       </a>
     </li>
 
-  
+
 
   <li class="slide">
     <a class="side-menu__item bg-white" href="{{ route('organisasi/manage/members', ['organisasi_id'=>$organisasi['organisasi_id']]) }}">
@@ -83,7 +96,7 @@
 
       <form method="POST" action="{{ route('organisasi/update') }}" class="form-horizontal">
         @csrf
-        
+
         <input name="organisasi_id" type="hidden" value="{{ $organisasi['organisasi_id'] }}">
 
         <div class="form-group row">
@@ -111,7 +124,7 @@
         </div>
 
 
-        
+
         <div class="form-group row">
           <label for="jenis_iuran" class="col-md-3 form-label">Jenis Iuran</label>
           <div class="col-md-9">
@@ -162,18 +175,73 @@
   </div>
 </div>
 
+
+<div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Ganti Bendahara Utama</h4>
+      </div>
+      <div class="card-body">
+
+        <form method="POST" action="{{ route('organisasi/change') }}" class="form-horizontal">
+          @csrf
+
+          <input name="organisasi_id" type="hidden" value="{{ $organisasi['organisasi_id'] }}">
+
+          <div class="form-group row">
+            <label for="user_id" class="col-md-3 form-label">ID Pengguna</label>
+            <div class="col-md-9">
+              <input name="user_id" type="text" class="form-control{{ $errors->has('user_id') ? ' is-invalid' : '' }}" id="user_id" placeholder="ID pengguna..." value="{{ old('user_id') }}">
+              @if ($errors->has('user_id'))
+              <span class="text-danger" role="alert">
+                  <strong>{{ $errors->first('user_id') }}</strong>
+              </span>
+              @endif
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="password" class="col-md-3 form-label">Kata Sandi Akun</label>
+            <div class="col-md-9">
+              <input name="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" id="password" placeholder="Kata sandi akun..." value="{{ old('password') }}">
+              @if ($errors->has('password'))
+              <span class="text-danger" role="alert">
+                  <strong>{{ $errors->first('password') }}</strong>
+              </span>
+              @endif
+            </div>
+          </div>
+
+
+          <div class="text-right">
+              <p>Pengguna harus sudah menjadi asisten bendahara di organisasi ini untuk mengantikan posisi bendahara utama!</p>
+              <button type="submit" class="btn btn-info">Simpan Perubahan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 @endsection
 
 
 @section('internalJS')
-  @if (Session::has('success'))
-  <script>
-    $.growl.notice({
-      title: "Sukses",
-      message: "{{ Session::get('success')}}"
-    });
+@if (Session::has('success'))
+<script>
+  $.growl.notice({
+    title: "Sukses",
+    message: "{{ Session::get('success')}}"
+  });
 </script>
-  @endif
+@endif
+
+@if (Session::has('error'))
+<script>
+  $.growl.error({
+    title: "Gagal",
+    message: "{{ Session::get('error')}}"
+  });
+</script>
+@endif
 @endsection
 
 

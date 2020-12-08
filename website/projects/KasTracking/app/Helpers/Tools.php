@@ -1,10 +1,21 @@
 <?php
 
 namespace App\Helpers;
+use App\OrganisasiTracking;
 
 class Tools
 {
 
+    public static function formatRupiah($nominal){
+
+        return "Rp" . number_format((int)$nominal, 0, ',', '.') . ",00";
+    }
+
+    public static function trackingBulanan($organisasi_id, $bulan, $tahun, $kategori){
+        $jumlah = OrganisasiTracking::where('organisasi_id', $organisasi_id)->where('kategori', $kategori)->whereRaw('extract(month from updated_at) = ?', $bulan)->whereRaw('extract(year from updated_at) = ?', $tahun)->sum('nominal');
+
+        return $jumlah;
+    }
     
     public static function tanggalHariIndonesia($value)
     {

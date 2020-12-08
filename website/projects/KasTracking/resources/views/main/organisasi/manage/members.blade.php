@@ -4,6 +4,19 @@
 {{ config('app.name', 'Kas Tracking') }} - Anggota Organisasi
 @endsection
 
+@section('info-org')
+  <ul class="list-group text-left mt-3">
+    <li class="list-group-item justify-content-between">
+      <strong class="text-muted">Jenis Iuran</strong>
+      <span class="badgetext badge badge-info badge-pill">{{ $organisasi['jenis_iuran'] }}</span>
+    </li>
+    <li class="list-group-item justify-content-between">
+      <strong class="text-muted">Jumlah Iuran</strong>
+      <span class="badgetext badge badge-secondary badge-pill">Rp{{ number_format($organisasi['jumlah_iuran'], 0, ',', '.') }},00</span>
+    </li>
+  </ul>
+@endsection
+
 @section('side-menu')
   <li class="side-item side-item-category mt-4">Menu Organisasi</li>
 
@@ -21,8 +34,6 @@
           <span class="badge badge-success side-badge">@yield('nUsers')</span>
       </a>
     </li>
-
-  
 
   <li class="slide">
     <a class="side-menu__item active" href="{{ route('organisasi/manage/members', ['organisasi_id'=>$organisasi['organisasi_id']]) }}">
@@ -79,14 +90,12 @@
         <div class="card-header d-flex justify-content-between">
             <div class="card-title">Data Anggota</div>
             <div>
-                @if ($organisasi['user_id'] == Auth::user()->id)
                   <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalTambah"><i class="fa fa-plus"></i></button>
-                @endif
             </div>
         </div>
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table table-bordered text-nowrap" id="data-anggota">
+            <table class="table table-bordered text-nowrap" id="dataTables1">
               <thead>
                 <tr>
                   <th class="wd-15p border-bottom-0">ID Anggota</th>
@@ -138,13 +147,13 @@
           </div>
           <div class="modal-body">
 
-              
+
             <form method="POST" action="{{ route('organisasi/manage/members', ['organisasi_id'=>$organisasi['organisasi_id']]) }}">
               @csrf
-              
+
               <div class="form-group">
                   <label for="member_id" class="form-label">ID Anggota</label>
-                  
+
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text">m{{$organisasi['organisasi_id']}}_</span>
@@ -155,7 +164,7 @@
                     <span class="text-danger" role="alert">
                         <strong>{{ $errors->first('member_id') }}</strong>
                     </span>
-                  @endif  
+                  @endif
               </div>
 
               <div class="form-group">
@@ -182,7 +191,7 @@
                   </label>
                 </div>
               </div>
-    
+
 
               <div class="form-group">
                   <label for="tipe_pembayaran" class="form-label">Tipe Pembayaran</label>
@@ -255,10 +264,10 @@
           </div>
           <div class="modal-body">
 
-              
+
             <form method="POST" action="{{ route('organisasi/manage/members/update', ['organisasi_id'=>$organisasi['organisasi_id']]) }}">
               @csrf
-              
+
               <div class="form-group">
                   <label for="member_id" class="form-label">ID Anggota</label>
                   <input class="form-control mb-0" type="text" name="member_id" id="u_member_id" required readonly>
@@ -282,7 +291,7 @@
                   </label>
                 </div>
               </div>
-    
+
               <div class="form-group">
                   <label for="tipe_pembayaran" class="form-label">Tipe Pembayaran</label>
                   <select class="form-control mb-0" name="tipe_pembayaran" id="u_tipe_pembayaran" required>
@@ -317,7 +326,7 @@
         </div>
       </div>
     </div>
-    
+
 @endsection
 
 
@@ -353,7 +362,7 @@
       $('#u_keys').val(keys);
       $('input[name="jenis_kelamin"]').removeAttr('checked');
       $("input[name=jenis_kelamin][value=" + jenis_kelamin + "]").attr('checked', 'checked');
-    }   
+    }
 </script>
 
   @if (Session::has('success'))
