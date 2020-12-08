@@ -87,16 +87,16 @@
             <li class="side-item side-item-category mt-4">Menu Admin</li>
 
             <li class="slide ">
-              <a class="side-menu__item bg-white" href="{{ route('organisasi') }}">
-              <i data-feather="users" class="side-menu__icon"></i>
+              <a class="side-menu__item {{ (Route::currentRouteName() == 'admin/users') ? 'active' : 'bg-white' }}" href="{{ route('admin/users') }}">
+              <i data-feather="book-open" class="side-menu__icon"></i>
                   <span class="side-menu__label">Daftar Pengguna</span>
                   <span class="badge badge-success side-badge"></span>
               </a>
             </li>
 
             <li class="slide ">
-              <a class="side-menu__item bg-white" href="{{ route('organisasi') }}">
-              <i data-feather="layers" class="side-menu__icon"></i>
+              <a class="side-menu__item {{ (Route::currentRouteName() == 'admin/organisasi') ? 'active' : 'bg-white' }}" href="{{ route('admin/organisasi') }}">
+              <i data-feather="grid" class="side-menu__icon"></i>
                   <span class="side-menu__label">Daftar Organisasi</span>
                   <span class="badge badge-success side-badge"></span>
               </a>

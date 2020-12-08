@@ -121,3 +121,15 @@ Route::get('member/dashboard', 'MembersController@dashboard')->name('member/dash
 
 // Halaman tracking organisasi untuk anggota
 Route::get('member/tracking', 'MembersController@tracking')->name('member/tracking');
+
+/*
+==============================================================
+Admin
+==============================================================
+*/
+
+// Halaman daftar pengguna
+Route::get('admin/users', 'AdminController@users')->name('admin/users');
+
+// Halaman daftar organisasi
+Route::get('admin/organisasi', 'AdminController@organisasi')->name('admin/organisasi');
