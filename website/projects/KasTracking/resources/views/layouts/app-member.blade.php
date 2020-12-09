@@ -13,27 +13,27 @@
 
     <!--Favicon -->
     <link rel="shortcut icon" type="image/png" href="{{ asset('img/kas-tracking.png') }}" />
-    
+
     <!--Bootstrap css -->
-    <link href="{{ asset('../node_modules/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet"/> 
-    
+    <link href="{{ asset('../node_modules/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet"/>
+
     <!-- Style css -->
-    <link href="{{ asset('css/main/main.css') }}" rel="stylesheet"/> 
+    <link href="{{ asset('css/main/main.css') }}" rel="stylesheet"/>
 
     <!-- Perfect Scroolbal -->
-    <link href="{{ asset('../node_modules/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet"/> 
+    <link href="{{ asset('../node_modules/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet"/>
 
     <!---Icons css-->
-    <link href="{{ asset('../node_modules/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet"/> 
+    <link href="{{ asset('../node_modules/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet"/>
 
     <!-- Simplebar css-->
-    <link href="{{ asset('../node_modules/simplebar/dist/simplebar.min.css') }}" rel="stylesheet"/> 
-    
+    <link href="{{ asset('../node_modules/simplebar/dist/simplebar.min.css') }}" rel="stylesheet"/>
+
     <!-- Growl css-->
-    <link href="{{ asset('lib/jquery.growl.css') }}" rel="stylesheet"/> 
+    <link href="{{ asset('lib/jquery.growl.css') }}" rel="stylesheet"/>
 
     <!-- Color Skin css -->
-    <link href="{{ asset('css/main/theme1.css') }}" rel="stylesheet"/> 
+    <link href="{{ asset('css/main/theme1.css') }}" rel="stylesheet"/>
 
 
     @yield('internalCSS')
@@ -41,7 +41,7 @@
   </head>
 
   <body class="app sidebar-mini">
-    
+
     <!---Global-loader-->
     <div id="global-loader">
       <img src="{{ asset('svg/main/loader.svg') }}" alt="loader" />
@@ -75,7 +75,7 @@
                 <span class="badge badge-success-light mt-2">{{ $status }}</span>
               </div>
             </div>
-            
+
             <div class="user-info">
                 <ul class="list-group text-left mt-3">
                     <li class="list-group-item justify-content-between">
@@ -94,7 +94,7 @@
             </div>
 
           </div>
-          
+
           <ul class="side-menu app-sidebar3">
 
             <li class="side-item side-item-category mt-4">Menu Organisasi</li>
@@ -105,8 +105,8 @@
                     <span class="side-menu__label">Dasbor</span>
                 </a>
             </li>
-        
-        
+
+
             <li class="slide">
                 <a class="side-menu__item {{ (Route::currentRouteName() == 'member/tracking') ? 'active' : 'bg-white' }}" href="{{ route('member/tracking', ['organisasi_id'=>$organisasi->organisasi_id]) }}">
                 <i data-feather="dollar-sign" class="side-menu__icon"></i>
@@ -142,7 +142,7 @@
 
                   <div class="d-flex order-lg-2 ml-auto">
                     <div class="dropdown header-fullscreen">
-                      <a class="nav-link icon full-screen-link p-0" id="fullscreen-button"> 
+                      <a class="nav-link icon full-screen-link p-0" id="fullscreen-button">
                         <i data-feather="minimize" class="header-icon"></i>
                       </a>
                     </div>
@@ -188,11 +188,11 @@
                     </div>
 
 
-                    
+
                     <div class="dropdown profile-dropdown">
                         <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
                           <span>
-                            <img src="{{ $url_foto }}" alt="img" class="avatar avatar-md brround"/> 
+                            <img src="{{ $url_foto }}" alt="img" class="avatar avatar-md brround"/>
                           </span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow animated">
@@ -203,7 +203,7 @@
                                   <span class="badge badge-success-light mt-2">{{ $status }}</span>
                             <div class="dropdown-divider"></div>
                           </div>
-  
+
                           <a class="dropdown-item d-flex" href="{{ route('member/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i data-feather="log-out" class="text-icon mr-3"></i>
                             <div class="">Keluar</div>
@@ -211,7 +211,7 @@
                           <form id="logout-form" action="{{ route('member/logout') }}" method="POST" style="display: none;">
                             @csrf
                           </form>
-                          
+
                         </div>
                       </div>
 
